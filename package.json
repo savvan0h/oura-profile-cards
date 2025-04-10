@@ -7,6 +7,6 @@
     "start": "node src/index.js"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20"
   }
 }
