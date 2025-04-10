@@ -25856,6 +25856,26 @@ async function generate() {
   const outputPath = path.join(outputDir, 'card-readiness-week.svg');
   fs.writeFileSync(outputPath, finalSvg, 'utf8');
   console.log('Wrote 7-day readiness chart to', outputPath);
+  // Commit generated file
+  const { exec } = __nccwpck_require__(5317);
+  const util = __nccwpck_require__(9023);
+  const execCmd = util.promisify(exec);
+
+  const commitFile = async () => {
+    await execCmd(
+      'git config --global user.email "oura-profile-cards-bot@example.com"'
+    );
+    await execCmd('git config --global user.name "oura-profile-cards[bot]"');
+    await execCmd(`git add ${outputPath}`);
+    try {
+      await execCmd('git commit -m "Generate Oura profile cards"');
+    } catch (e) {
+      console.log('Nothing to commit');
+    }
+    await execCmd('git push');
+  };
+
+  await commitFile();
 }
 
 module.exports = { generate };
