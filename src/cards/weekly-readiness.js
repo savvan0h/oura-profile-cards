@@ -181,12 +181,17 @@ async function generate() {
     generateLineChart(points);
 
   // Read readiness SVG template
-  const templatePath = path.join(__dirname, '..', 'templates', 'readiness.svg');
+  const templatePath = path.join(
+    __dirname,
+    '..',
+    'templates',
+    'weekly-readiness.svg'
+  );
   let template = '';
   try {
     template = fs.readFileSync(templatePath, 'utf8');
   } catch (err) {
-    console.error('Error reading readiness SVG template:', err);
+    console.error('Error reading weekly readiness SVG template:', err);
     return;
   }
 
@@ -205,9 +210,9 @@ async function generate() {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
-  const outputPath = path.join(outputDir, 'card-readiness-week.svg');
+  const outputPath = path.join(outputDir, 'weekly-readiness-card.svg');
   fs.writeFileSync(outputPath, finalSvg, 'utf8');
-  console.log('Wrote 7-day readiness chart to', outputPath);
+  console.log('Wrote weekly readiness card to', outputPath);
   // Commit generated file
   const { exec } = require('child_process');
   const util = require('util');

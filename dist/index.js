@@ -23678,7 +23678,7 @@ const {
   kByteParser,
   kReceivedClose
 } = __nccwpck_require__(5451)
-const { fireEvent, failWebsocketConnection } = __nccwpck_require__(4272)
+const { fireEvent, failWebsocketConnection } = __nccwpck_require__(1891)
 const { CloseEvent } = __nccwpck_require__(541)
 const { makeRequest } = __nccwpck_require__(6800)
 const { fetching } = __nccwpck_require__(1029)
@@ -24424,7 +24424,7 @@ const { Writable } = __nccwpck_require__(2203)
 const diagnosticsChannel = __nccwpck_require__(1637)
 const { parserStates, opcodes, states, emptyBuffer } = __nccwpck_require__(1775)
 const { kReadyState, kSentClose, kResponse, kReceivedClose } = __nccwpck_require__(5451)
-const { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = __nccwpck_require__(4272)
+const { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = __nccwpck_require__(1891)
 const { WebsocketFrameSend } = __nccwpck_require__(3987)
 
 // This code was influenced by ws released under the MIT license.
@@ -24786,7 +24786,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 4272:
+/***/ 1891:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
@@ -25014,7 +25014,7 @@ const {
   kSentClose,
   kByteParser
 } = __nccwpck_require__(5451)
-const { isEstablished, isClosing, isValidSubprotocol, failWebsocketConnection, fireEvent } = __nccwpck_require__(4272)
+const { isEstablished, isClosing, isValidSubprotocol, failWebsocketConnection, fireEvent } = __nccwpck_require__(1891)
 const { establishWebSocketConnection } = __nccwpck_require__(3076)
 const { WebsocketFrameSend } = __nccwpck_require__(3987)
 const { ByteParser } = __nccwpck_require__(8765)
@@ -25643,7 +25643,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 8716:
+/***/ 4272:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const fs = __nccwpck_require__(9896);
@@ -25829,12 +25829,12 @@ async function generate() {
     generateLineChart(points);
 
   // Read readiness SVG template
-  const templatePath = __nccwpck_require__.ab + "readiness.svg";
+  const templatePath = __nccwpck_require__.ab + "weekly-readiness.svg";
   let template = '';
   try {
-    template = fs.readFileSync(__nccwpck_require__.ab + "readiness.svg", 'utf8');
+    template = fs.readFileSync(__nccwpck_require__.ab + "weekly-readiness.svg", 'utf8');
   } catch (err) {
-    console.error('Error reading readiness SVG template:', err);
+    console.error('Error reading weekly readiness SVG template:', err);
     return;
   }
 
@@ -25853,9 +25853,9 @@ async function generate() {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
-  const outputPath = path.join(outputDir, 'card-readiness-week.svg');
+  const outputPath = path.join(outputDir, 'weekly-readiness-card.svg');
   fs.writeFileSync(outputPath, finalSvg, 'utf8');
-  console.log('Wrote 7-day readiness chart to', outputPath);
+  console.log('Wrote weekly readiness card to', outputPath);
   // Commit generated file
   const { exec } = __nccwpck_require__(5317);
   const util = __nccwpck_require__(9023);
@@ -27795,10 +27795,10 @@ module.exports = parseParams
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-const readiness = __nccwpck_require__(8716);
+const weeklyReadiness = __nccwpck_require__(4272);
 
 (async function main() {
-  await readiness.generate();
+  await weeklyReadiness.generate();
 
   console.log('All cards have been updated.');
 })();

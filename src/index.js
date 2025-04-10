@@ -1,7 +1,7 @@
-const readiness = require('./cards/readiness');
+const weeklyReadiness = require('./cards/weekly-readiness');
 
 (async function main() {
-  await readiness.generate();
+  await weeklyReadiness.generate();
 
   console.log('All cards have been updated.');
 })();
