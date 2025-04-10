@@ -55,7 +55,7 @@ To display a card in your GitHub profile README, use the following Markdown synt
 ![My Oura Weekly Readiness](https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/oura-profile-card-output/weekly-readiness-card.svg)
 ```
 
-For a live example, see [@savvan0h's profile](https://github.com/savvan0h/savvan0h).
+For a live example, see [@savvan0h's profile](https://github.com/savvan0h).
 
 ## Troubleshooting
 
