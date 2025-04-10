@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const core = require('@actions/core');
 
-const token = process.env.OURA_API_TOKEN;
+const token = core.getInput('OURA_API_TOKEN');
 if (!token) {
   console.error('Error: OURA_API_TOKEN environment variable is not set.');
   process.exit(1);
