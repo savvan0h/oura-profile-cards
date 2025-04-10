@@ -1,0 +1,27 @@
+name: 'Oura Profile Cards'
+description: 'Generates SVG cards from your Oura data.'
+author: 'savvan0h'
+inputs:
+  OURA_API_TOKEN:
+    description: 'Your personal Oura API token.'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js v22
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+    - name: Install Dependencies
+      run: npm install
+    - name: Generate Cards
+      env:
+        OURA_API_TOKEN: ${{ inputs.OURA_API_TOKEN }}
+      run: npm run start
+    - name: Commit Generated Cards
+      run: |
+        git config --local user.name "github-actions"
+        git config --local user.email "github-actions@github.com"
+        git add *.svg
+        git diff-index --quiet HEAD || git commit -m "Update Oura Profile Cards"
+        git push

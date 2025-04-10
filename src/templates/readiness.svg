@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320">
+  <!-- Background -->
+  <rect x="0" y="0" width="720" height="320" fill="#000000" />
+
+  <!-- Title & Date Range -->
+  <text x="20" y="40" font-size="22" fill="#ffffff" font-family="Arial, sans-serif">
+    7-Day Readiness Score
+  </text>
+  <text x="20" y="70" font-size="18" fill="#cccccc" font-family="Arial, sans-serif">
+    {{DATE_RANGE}}
+  </text>
+
+  <!-- Chart Area -->
+  <!-- Y-axis line -->
+  <line x1="80" y1="90" x2="80" y2="230" stroke="#444444" stroke-width="1"/>
+  <!-- X-axis line -->
+  <line x1="80" y1="230" x2="620" y2="230" stroke="#444444" stroke-width="1"/>
+
+  <!-- Dotted Threshold Lines & Labels -->
+  <g id="extra-lines">
+    {{EXTRA_LINES}}
+  </g>
+
+  <!-- Main Line Chart Path -->
+  <path d="{{PATH_DATA}}" fill="none" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Data Points -->
+  {{CIRCLES}}
+
+  <!-- X-axis Tick Labels -->
+  <g class="x-ticks">
+    {{X_TICKS}}
+  </g>
+
+  <!-- Y-axis Tick Labels -->
+  <g class="y-ticks">
+    {{Y_TICKS}}
+  </g>
+</svg>

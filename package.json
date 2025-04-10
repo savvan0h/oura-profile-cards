@@ -1,0 +1,12 @@
+{
+  "name": "oura-profile-cards",
+  "version": "0.1.0",
+  "description": "Generate dynamic SVG cards (e.g. a readiness chart) for your GitHub profile using Oura API data.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
