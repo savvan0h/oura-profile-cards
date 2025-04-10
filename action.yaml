@@ -8,6 +8,8 @@ inputs:
 runs:
   using: 'node20'
   main: 'src/index.js'
+  env:
+    OURA_API_TOKEN: ${{ inputs.OURA_API_TOKEN }}
 branding:
   icon: 'activity'
   color: 'gray-dark'
