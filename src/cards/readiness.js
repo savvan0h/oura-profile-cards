@@ -200,7 +200,11 @@ async function generate() {
   });
 
   // Write final SVG output to project root
-  const outputPath = path.join(process.cwd(), 'card-readiness-week.svg');
+  const outputDir = path.join(process.cwd(), 'oura-profile-card-output');
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  const outputPath = path.join(outputDir, 'card-readiness-week.svg');
   fs.writeFileSync(outputPath, finalSvg, 'utf8');
   console.log('Wrote 7-day readiness chart to', outputPath);
 }
