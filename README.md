@@ -1,6 +1,16 @@
-# Oura Profile Cards
-
-**Oura Profile Cards** is a GitHub Action that generates SVG cards (e.g., a weekly readiness chart) using data collected by the [Oura Ring](https://ouraring.com/). These cards allow you to showcase your health metrics and insights on your GitHub profile.
+<div align="center">
+  <h1 style="display: flex; align-items: center; justify-content: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; letter-spacing: 0.5px;">
+    <img src="https://raw.githubusercontent.com/savvan0h/oura-profile-cards/main/images/ring.png" alt="Oura Ring" width="50" style="margin-right: 12px;" />
+    Oura Profile Cards
+  </h1>
+  <img src="https://img.shields.io/badge/status-active-brightgreen?style=flat-square" alt="Status" />
+  <img src="https://img.shields.io/github/license/savvan0h/oura-profile-cards?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/made%20with-Typescript-blue?style=flat-square" alt="Made with Typescript" />
+  <img src="https://img.shields.io/badge/API-Oura-6A00F4?style=flat-square" alt="Oura API" />
+  <p>
+    <strong>Oura Profile Cards</strong> is a GitHub Action that generates SVG cards (e.g., a weekly readiness chart) using data collected by the <a href="https://ouraring.com/">Oura Ring</a>. These cards allow you to showcase your health metrics and insights on your GitHub profile.
+  </p>
+</div>
 
 > [!Note]
 > You must have an Oura Ring and a valid API token to use this action. Learn more about the Oura API [here](https://cloud.ouraring.com/docs).
