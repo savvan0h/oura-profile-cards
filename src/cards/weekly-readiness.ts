@@ -191,15 +191,12 @@ export async function generate(): Promise<void> {
     generateLineChart(points);
 
   // Read readiness SVG template
-  const templatePath = path.join(
-    __dirname,
-    '..',
-    'templates',
-    'weekly-readiness.svg'
-  );
   let template = '';
   try {
-    template = fs.readFileSync(templatePath, 'utf8');
+    template = fs.readFileSync(
+      require.resolve('../templates/weekly-readiness.svg'),
+      'utf8'
+    );
   } catch (err) {
     console.error('Error reading weekly readiness SVG template:', err);
     return;
