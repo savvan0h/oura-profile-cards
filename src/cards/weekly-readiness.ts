@@ -1,7 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const core = require('@actions/core');
+import type { DailyReadiness, OuraReadinessResponse } from '../types/oura';
+import type { ChartDetails, Threshold } from '../types/chart';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as core from '@actions/core';
+import * as util from 'util';
+import { exec as execCb } from 'child_process';
 
+const exec = util.promisify(execCb);
 const token = core.getInput('OURA_API_TOKEN');
 if (!token) {
   console.error('Error: OURA_API_TOKEN environment variable is not set.');
@@ -9,14 +14,14 @@ if (!token) {
 }
 
 // Return date string in YYYY-MM-DD offset by given number of days
-function getIsoDate(offsetDays = 0) {
+function getIsoDate(offsetDays = 0): string {
   const date = new Date();
   date.setDate(date.getDate() + offsetDays);
   return date.toISOString().split('T')[0];
 }
 
 // Fetch daily_readiness data for the past 7 days
-async function fetchReadiness() {
+async function fetchReadiness(): Promise<OuraReadinessResponse | null> {
   const startDate = getIsoDate(-7);
   const endDate = getIsoDate(0);
   const endpoint = `https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=${startDate}&end_date=${endDate}`;
@@ -28,7 +33,7 @@ async function fetchReadiness() {
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
     }
-    return await response.json();
+    return (await response.json()) as OuraReadinessResponse;
   } catch (error) {
     console.error('Error fetching daily_readiness:', error);
     return null;
@@ -36,7 +41,7 @@ async function fetchReadiness() {
 }
 
 // Generate line chart details based on data and thresholds
-function generateLineChart(dataPoints) {
+function generateLineChart(dataPoints: DailyReadiness[]): ChartDetails {
   if (!dataPoints.length) {
     return {
       pathD: '',
@@ -60,7 +65,7 @@ function generateLineChart(dataPoints) {
   const maxScore = Math.max(...allScores);
 
   // Threshold definitions
-  const thresholds = [
+  const thresholds: Threshold[] = [
     { value: 60, label: 'Fair' },
     { value: 70, label: 'Good' },
     { value: 85, label: 'Optimal' },
@@ -80,10 +85,10 @@ function generateLineChart(dataPoints) {
   const xStep = N > 1 ? chartWidth / (N - 1) : 0;
 
   // Scale functions
-  function scaleX(i) {
+  function scaleX(i: number): number {
     return chartXStart + i * xStep;
   }
-  function scaleY(score) {
+  function scaleY(score: number): number {
     const t = (score - minPossible) / (maxPossible - minPossible);
     return offsetY + chartHeight - t * chartHeight;
   }
@@ -153,7 +158,10 @@ function generateLineChart(dataPoints) {
   };
 }
 
-function injectIntoTemplate(template, placeholders) {
+function injectIntoTemplate(
+  template: string,
+  placeholders: Record<string, string>
+): string {
   let output = template;
   for (const [key, value] of Object.entries(placeholders)) {
     const token = `{{${key}}}`;
@@ -162,7 +170,7 @@ function injectIntoTemplate(template, placeholders) {
   return output;
 }
 
-async function generate() {
+export async function generate(): Promise<void> {
   const readinessData = await fetchReadiness();
   if (!readinessData || !readinessData.data) {
     console.error(
@@ -213,26 +221,21 @@ async function generate() {
   const outputPath = path.join(outputDir, 'weekly-readiness-card.svg');
   fs.writeFileSync(outputPath, finalSvg, 'utf8');
   console.log('Wrote weekly readiness card to', outputPath);
-  // Commit generated file
-  const { exec } = require('child_process');
-  const util = require('util');
-  const execCmd = util.promisify(exec);
 
-  const commitFile = async () => {
-    await execCmd(
+  // Commit generated file
+  const commitFile = async (): Promise<void> => {
+    await exec(
       'git config --global user.email "oura-profile-cards-bot@example.com"'
     );
-    await execCmd('git config --global user.name "oura-profile-cards[bot]"');
-    await execCmd(`git add ${outputPath}`);
+    await exec('git config --global user.name "oura-profile-cards[bot]"');
+    await exec(`git add ${outputPath}`);
     try {
-      await execCmd('git commit -m "Generate Oura profile cards"');
+      await exec('git commit -m "Generate Oura profile cards"');
     } catch (e) {
       console.log('Nothing to commit');
     }
-    await execCmd('git push');
+    await exec('git push');
   };
 
   await commitFile();
 }
-
-module.exports = { generate };

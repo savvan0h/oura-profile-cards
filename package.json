@@ -2,12 +2,15 @@
   "name": "oura-profile-cards",
   "version": "0.1.0",
   "description": "Generate dynamic SVG cards (e.g. a readiness chart) for your GitHub profile using Oura API data.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "node src/index.js",
-    "package": "ncc build --license licenses.txt",
-    "format": "prettier --write '**/*.js'",
-    "format:check": "prettier --check '**/*.js'"
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "package": "tsc && ncc build dist/index.js --license licenses.txt",
+    "format": "prettier --write '**/*.{ts,json}'",
+    "format:check": "prettier --check '**/*.{ts,json}'",
+    "lint": "eslint src/**/*.ts"
   },
   "engines": {
     "node": ">=20"
@@ -17,6 +20,8 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.38.3",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
