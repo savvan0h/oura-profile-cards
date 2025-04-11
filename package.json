@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "package": "ncc build --license licenses.txt"
+    "package": "ncc build --license licenses.txt",
+    "format": "prettier --write '**/*.js'",
+    "format:check": "prettier --check '**/*.js'"
   },
   "engines": {
     "node": ">=20"
@@ -14,6 +16,7 @@
     "@actions/core": "^1.11.1"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.3"
+    "@vercel/ncc": "^0.38.3",
+    "prettier": "^3.5.3"
   }
 }
