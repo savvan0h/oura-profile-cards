@@ -1,10 +1,12 @@
-import type { DailyReadiness, OuraReadinessResponse } from '../types/oura';
-import type { ChartDetails, Threshold } from '../types/chart';
+import { exec as execCb } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as core from '@actions/core';
 import * as util from 'util';
-import { exec as execCb } from 'child_process';
+
+import * as core from '@actions/core';
+
+import type { ChartDetails, Threshold } from '@/types/chart';
+import type { DailyReadiness, OuraReadinessResponse } from '@/types/oura';
 
 const exec = util.promisify(execCb);
 const token = core.getInput('OURA_API_TOKEN');
@@ -231,7 +233,7 @@ export async function generate(): Promise<void> {
     await exec(`git add ${outputPath}`);
     try {
       await exec('git commit -m "Generate Oura profile cards"');
-    } catch (e) {
+    } catch {
       console.log('Nothing to commit');
     }
     await exec('git push');

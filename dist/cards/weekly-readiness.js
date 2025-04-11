@@ -34,11 +34,11 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generate = generate;
+const child_process_1 = require("child_process");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
-const core = __importStar(require("@actions/core"));
 const util = __importStar(require("util"));
-const child_process_1 = require("child_process");
+const core = __importStar(require("@actions/core"));
 const exec = util.promisify(child_process_1.exec);
 const token = core.getInput('OURA_API_TOKEN');
 if (!token) {
@@ -232,7 +232,7 @@ async function generate() {
         try {
             await exec('git commit -m "Generate Oura profile cards"');
         }
-        catch (e) {
+        catch {
             console.log('Nothing to commit');
         }
         await exec('git push');

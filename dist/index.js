@@ -41,11 +41,11 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.generate = generate;
+const child_process_1 = __nccwpck_require__(5317);
 const fs = __importStar(__nccwpck_require__(9896));
 const path = __importStar(__nccwpck_require__(6928));
-const core = __importStar(__nccwpck_require__(7484));
 const util = __importStar(__nccwpck_require__(9023));
-const child_process_1 = __nccwpck_require__(5317);
+const core = __importStar(__nccwpck_require__(7484));
 const exec = util.promisify(child_process_1.exec);
 const token = core.getInput('OURA_API_TOKEN');
 if (!token) {
@@ -239,7 +239,7 @@ async function generate() {
         try {
             await exec('git commit -m "Generate Oura profile cards"');
         }
-        catch (e) {
+        catch {
             console.log('Nothing to commit');
         }
         await exec('git push');
