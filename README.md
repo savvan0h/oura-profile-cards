@@ -1,6 +1,6 @@
 <div align="center">
-  <h1 style="display: flex; align-items: center; justify-content: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; letter-spacing: 0.5px;">
-    <img src="https://raw.githubusercontent.com/savvan0h/oura-profile-cards/main/images/ring.png" alt="Oura Ring" width="50" style="margin-right: 12px;" />
+  <h1>
+    <img src="https://raw.githubusercontent.com/savvan0h/oura-profile-cards/main/images/ring.png" width="50" align="absmiddle"/>
     Oura Profile Cards
   </h1>
   <img src="https://img.shields.io/badge/status-active-brightgreen?style=flat-square" alt="Status" />
