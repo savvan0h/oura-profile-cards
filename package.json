@@ -4,7 +4,8 @@
   "description": "Generate dynamic SVG cards (e.g. a readiness chart) for your GitHub profile using Oura API data.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "package": "ncc build --license licenses.txt"
   },
   "engines": {
     "node": ">=20"
