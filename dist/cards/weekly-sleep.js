@@ -36,15 +36,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generate = generate;
 const fs = __importStar(require("fs"));
 const common_1 = require("@/utils/common");
-// Fetch daily_readiness data for the past 7 days
-async function fetchReadiness(token) {
+// Fetch daily_sleep data for the past 7 days
+async function fetchSleep(token) {
     const startDate = (0, common_1.getIsoDate)(-7);
     const endDate = (0, common_1.getIsoDate)(0);
-    const endpoint = `https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=${startDate}&end_date=${endDate}`;
+    const endpoint = `https://api.ouraring.com/v2/usercollection/daily_sleep?start_date=${startDate}&end_date=${endDate}`;
     return await (0, common_1.fetchOuraData)(endpoint, token);
 }
-// Define readiness threshold values
-function getReadinessThresholds() {
+// Define sleep threshold values
+function getSleepThresholds() {
     return [
         { value: 60, label: 'Fair' },
         { value: 70, label: 'Good' },
@@ -53,24 +53,24 @@ function getReadinessThresholds() {
 }
 async function generate() {
     const token = (0, common_1.getApiToken)();
-    const readinessData = await fetchReadiness(token);
-    if (!readinessData || !readinessData.data) {
-        console.error('No readiness data found. Aborting readiness card generation.');
+    const sleepData = await fetchSleep(token);
+    if (!sleepData || !sleepData.data) {
+        console.error('No sleep data found. Aborting sleep card generation.');
         return;
     }
     // Convert API response to array of { day, score }
-    const points = readinessData.data.map((item) => ({
+    const points = sleepData.data.map((item) => ({
         day: item.day || 'N/A',
         score: typeof item.score === 'number' ? item.score : 0,
     }));
-    const { pathD, circles, xTicks, yTicks, dateRange, extraLines } = (0, common_1.generateLineChart)(points, getReadinessThresholds());
-    // Read readiness SVG template
+    const { pathD, circles, xTicks, yTicks, dateRange, extraLines } = (0, common_1.generateLineChart)(points, getSleepThresholds());
+    // Read sleep SVG template
     let template = '';
     try {
-        template = fs.readFileSync(require.resolve('../templates/weekly-readiness.svg'), 'utf8');
+        template = fs.readFileSync(require.resolve('../templates/weekly-sleep.svg'), 'utf8');
     }
     catch (err) {
-        console.error('Error reading weekly readiness SVG template:', err);
+        console.error('Error reading weekly sleep SVG template:', err);
         return;
     }
     // Inject generated content into template
@@ -82,6 +82,6 @@ async function generate() {
         DATE_RANGE: dateRange,
         EXTRA_LINES: extraLines,
     });
-    return (0, common_1.writeSvgOutput)('weekly-readiness-card.svg', finalSvg);
+    return (0, common_1.writeSvgOutput)('weekly-sleep-card.svg', finalSvg);
 }
-//# sourceMappingURL=weekly-readiness.js.map
+//# sourceMappingURL=weekly-sleep.js.map

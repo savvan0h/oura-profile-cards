@@ -16,12 +16,16 @@
 > You must have an Oura Ring and a valid API token to use this action. Learn more about the Oura API [here](https://cloud.ouraring.com/docs).
 
 ## Available Cards
+### Weekly Cards
+These cards display your Oura Ring metrics over the past 7 days with threshold indicators for optimal, good, and fair levels:
 
-### Weekly Readiness Card
-
-The Weekly Readiness card displays your Oura Ring readiness scores over the past 7 days with threshold indicators for optimal, good, and fair readiness levels.
+#### Readiness
 
 ![Weekly Readiness Card](images/weekly-readiness-card.svg)
+
+#### Sleep
+
+![Weekly Sleep Card](images/weekly-sleep-card.svg)
 
 ## Usage
 
@@ -59,10 +63,11 @@ The action automatically:
 2. Generates SVG charts in the `oura-profile-card-output` directory
 3. Commits and pushes these files to your repository
 
-To display a card in your GitHub profile README, use the following Markdown syntax:
+To display cards in your GitHub profile README, use the following Markdown syntax:
 
 ```markdown
 ![My Oura Weekly Readiness](https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/oura-profile-card-output/weekly-readiness-card.svg)
+![My Oura Weekly Sleep](https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/oura-profile-card-output/weekly-sleep-card.svg)
 ```
 
 For a live example, see [@savvan0h's profile](https://github.com/savvan0h).
