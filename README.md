@@ -34,7 +34,7 @@ name: Oura Profile Cards
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run every 24 hours
+    - cron: '0 */3 * * *' # Run every 3 hours (adjust as needed)
   workflow_dispatch: # Allow manual triggering
 
 jobs:
