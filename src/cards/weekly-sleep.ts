@@ -14,7 +14,7 @@ import {
 
 // Fetch daily_sleep data for the past 7 days
 async function fetchSleep(token: string): Promise<OuraSleepResponse | null> {
-  const startDate = getIsoDate(-7);
+  const startDate = getIsoDate(-6);
   const endDate = getIsoDate(0);
   const endpoint = `https://api.ouraring.com/v2/usercollection/daily_sleep?start_date=${startDate}&end_date=${endDate}`;
   return await fetchOuraData<OuraSleepResponse>(endpoint, token);

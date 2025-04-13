@@ -16,7 +16,7 @@ import {
 async function fetchReadiness(
   token: string
 ): Promise<OuraReadinessResponse | null> {
-  const startDate = getIsoDate(-7);
+  const startDate = getIsoDate(-6);
   const endDate = getIsoDate(0);
   const endpoint = `https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=${startDate}&end_date=${endDate}`;
   return await fetchOuraData<OuraReadinessResponse>(endpoint, token);

@@ -45,7 +45,7 @@ const fs = __importStar(__nccwpck_require__(9896));
 const common_1 = __nccwpck_require__(2416);
 // Fetch daily_readiness data for the past 7 days
 async function fetchReadiness(token) {
-    const startDate = (0, common_1.getIsoDate)(-7);
+    const startDate = (0, common_1.getIsoDate)(-6);
     const endDate = (0, common_1.getIsoDate)(0);
     const endpoint = `https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=${startDate}&end_date=${endDate}`;
     return await (0, common_1.fetchOuraData)(endpoint, token);
@@ -139,7 +139,7 @@ const fs = __importStar(__nccwpck_require__(9896));
 const common_1 = __nccwpck_require__(2416);
 // Fetch daily_sleep data for the past 7 days
 async function fetchSleep(token) {
-    const startDate = (0, common_1.getIsoDate)(-7);
+    const startDate = (0, common_1.getIsoDate)(-6);
     const endDate = (0, common_1.getIsoDate)(0);
     const endpoint = `https://api.ouraring.com/v2/usercollection/daily_sleep?start_date=${startDate}&end_date=${endDate}`;
     return await (0, common_1.fetchOuraData)(endpoint, token);
