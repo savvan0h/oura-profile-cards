@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
     "package": "tsc && cp -r src/templates dist/ && ncc build dist/index.js --license licenses.txt",
     "format": "prettier --write '**/*.{ts,json}'",
@@ -27,6 +27,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.1"
   }
