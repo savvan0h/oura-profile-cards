@@ -5,6 +5,10 @@ inputs:
   OURA_API_TOKEN:
     description: 'Your personal Oura API token.'
     required: true
+  SKIP_GIT_COMMIT:
+    description: 'Set to true to skip committing the generated SVG files.'
+    required: false
+    default: 'false'
 runs:
   using: 'node20'
   main: 'dist/index.js'

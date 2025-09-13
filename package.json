@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "start": "INPUT_SKIP_GIT_COMMIT=true ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
     "package": "tsc && cp -r src/templates dist/ && ncc build dist/index.js --license licenses.txt",
     "format": "prettier --write '**/*.{ts,json}'",

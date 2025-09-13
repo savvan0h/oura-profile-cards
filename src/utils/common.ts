@@ -167,6 +167,15 @@ export function writeSvgOutput(fileName: string, svgContent: string): string {
 
 // Commit generated files
 export async function commitGeneratedFiles(filePaths: string[]): Promise<void> {
+  const skipCommit = core.getInput('SKIP_GIT_COMMIT') === 'true';
+
+  if (skipCommit) {
+    console.log(
+      'Skipping git commit (development mode). Files generated but not committed.'
+    );
+    return;
+  }
+
   await exec(
     'git config --global user.email "oura-profile-cards-bot@example.com"'
   );
