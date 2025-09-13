@@ -16,7 +16,9 @@
 > You must have an Oura Ring and a valid API token to use this action. Learn more about the Oura API [here](https://cloud.ouraring.com/docs).
 
 ## Available Cards
+
 ### Weekly Cards
+
 These cards display your Oura Ring metrics over the past 7 days with threshold indicators for optimal, good, and fair levels:
 
 #### Readiness
@@ -71,6 +73,41 @@ To display cards in your GitHub profile README, use the following Markdown synta
 ```
 
 For a live example, see [@savvan0h's profile](https://github.com/savvan0h).
+
+## Development
+
+### Prerequisites
+
+- Node.js (version 20 or higher)
+
+### Running Locally
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/savvan0h/oura-profile-cards.git
+   cd oura-profile-cards
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set your Oura API token:**
+
+   ```bash
+   export INPUT_OURA_API_TOKEN=your_oura_api_token_here
+   ```
+
+4. **Run the action locally:**
+
+   ```bash
+   npm run start
+   ```
+
+   Note that running locally will not commit changes to your repository.
 
 ## Troubleshooting
 
