@@ -432,6 +432,11 @@ function writeSvgOutput(fileName, svgContent) {
 }
 // Commit generated files
 async function commitGeneratedFiles(filePaths) {
+    const skipCommit = core.getInput('SKIP_GIT_COMMIT') === 'true';
+    if (skipCommit) {
+        console.log('Skipping git commit (development mode). Files generated but not committed.');
+        return;
+    }
     await (0, exports.exec)('git config --global user.email "oura-profile-cards-bot@example.com"');
     await (0, exports.exec)('git config --global user.name "oura-profile-cards[bot]"');
     // Add all files to git
@@ -26299,6 +26304,11 @@ function writeSvgOutput(fileName, svgContent) {
 }
 // Commit generated files
 async function commitGeneratedFiles(filePaths) {
+    const skipCommit = core.getInput('SKIP_GIT_COMMIT') === 'true';
+    if (skipCommit) {
+        console.log('Skipping git commit (development mode). Files generated but not committed.');
+        return;
+    }
     await (0, exports.exec)('git config --global user.email "oura-profile-cards-bot@example.com"');
     await (0, exports.exec)('git config --global user.name "oura-profile-cards[bot]"');
     // Add all files to git
